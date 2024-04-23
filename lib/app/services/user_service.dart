@@ -18,4 +18,7 @@ void addMessageToList(ChatMessage message){
   printInfo(info: "New message $message");
 messages.add(message);
 }
+void clearMessage(){
+  messages.clear();
+}
 }
