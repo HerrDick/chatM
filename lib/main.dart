@@ -1,3 +1,5 @@
+import 'package:chat/app/services/socket_service.dart';
+import 'package:chat/app/services/user_service.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -14,4 +16,7 @@ void main() async{
     ),
   );
 }
-Future<void> initServices()async{}
+Future<void> initServices()async{
+  await Get.putAsync(() => SocketService().init());
+  await Get.putAsync(() => UserService().init());
+}
