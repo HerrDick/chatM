@@ -13,6 +13,8 @@ final focusNode = FocusNode();
     super.onInit();
   }
 disconnect()=>SocketService.to.disconnect();
+bool itsMe(String clientId)=>clientId ==  SocketService.to.clientId;
+
 void sendMessage(){
   var message = textController.text;
   if(messages.isNotEmpty)  SocketService.to.sendMessage(message);

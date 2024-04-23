@@ -38,7 +38,8 @@ class SocketService extends GetxService {
     });
     return this;
   }
-
+ 
+ String get clientId=>_socket.id ?? "";
   void connect(){
     _socket.connect();
   }

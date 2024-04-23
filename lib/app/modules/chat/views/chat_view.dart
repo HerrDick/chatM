@@ -1,4 +1,5 @@
 
+import 'package:chat/app/modules/chat/widget/bubble_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -20,13 +21,14 @@ class ChatView extends GetView<ChatController> {
           Expanded(child: 
           Obx(()=>ListView.builder(itemBuilder: (Context, index){
             var message=controller.messages[index];
+            var itsMe=controller.itsMe(message.client);
             switch (message.type){
               case SocketEvent.login:
               return Text("${message.username} вошел в чат");
               case SocketEvent.logout:
               return Text("${message.username} покинул чат");
               case SocketEvent.newMessage:
-              return Text("${message.username}  ${message.message}");
+              return BubbleWidget(message: message, itsMe: itsMe);
               default:
               return SizedBox();
             }
