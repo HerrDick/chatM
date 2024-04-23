@@ -3,7 +3,7 @@ import 'package:chat/app/services/socket_service.dart';
 import 'package:get/get.dart';
 
 class UserService extends GetxService {
- static UserService get to => Get.find();
+ static UserService get to => Get.find<UserService>();
 
  String username = "";
  final messages =RxList<ChatMessage>.empty();

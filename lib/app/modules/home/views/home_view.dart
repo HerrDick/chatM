@@ -17,11 +17,12 @@ class HomeView extends GetView<HomeController> {
         child: Container(
           width: 350,
           child: TextField(
-            controller: controller.textController,
-            onSubmitted: (value) => controller.singIn(),
-            decoration: InputDecoration(
+             decoration: InputDecoration(
               labelText: 'nickname'
             ),
+            controller: controller.textController,
+            onSubmitted: (value) => controller.singIn(),
+           
           ),
         )
       ),

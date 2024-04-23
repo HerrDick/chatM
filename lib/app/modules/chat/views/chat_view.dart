@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,8 @@ class ChatView extends GetView<ChatController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ChatView'),
-        centerTitle: true,
+        leading: IconButton(icon: Icon(Icons.exit_to_app), onPressed: ()=> controller.disconnect(),),
+      
       ),
       body: Column(
         children: [
@@ -21,7 +21,7 @@ class ChatView extends GetView<ChatController> {
           Obx(()=>ListView.builder(itemBuilder: (Context, index){
             var message=controller.messages[index];
             switch (message.type){
-              case SocketEvent.loggin:
+              case SocketEvent.login:
               return Text("${message.username} вошел в чат");
               case SocketEvent.logout:
               return Text("${message.username} покинул чат");
@@ -32,7 +32,20 @@ class ChatView extends GetView<ChatController> {
             }
           },
           itemCount: controller.messages.length,
-          ))
+          )),
+          
+          ),
+          Container(
+            width: 50,
+            decoration: BoxDecoration(color: Colors.blue),
+            child: TextField(
+              focusNode: controller.focusNode,
+              controller: controller.textController,
+              onSubmitted: (value) => controller.sendMessage(),
+              
+              decoration: InputDecoration(suffixIcon:IconButton( icon: Icon(Icons.send), onPressed: ()=>controller.sendMessage(),)
+              ),
+            ),
           )
         ],
       )

@@ -8,6 +8,8 @@ import 'package:socket_io_client/socket_io_client.dart';
 class SocketService extends GetxService {
  static SocketService get to => Get.find();
   late Socket _socket;
+  
+  String get client=> _socket.id ?? "";
   Future<SocketService> init() async {
     _socket = io('https://masqed.ru',
     OptionBuilder()
@@ -45,7 +47,7 @@ void disconnect(){
   _socket.disconnect();
 }
 void _sendSingInMessage(){
-  _socket.emit(SocketEvent.loggin.name, UserService.to.username);
+  _socket.emit(SocketEvent.login.name, UserService.to.username);
 }
 void _sendLogoutMessage(){
   _socket.emit(SocketEvent.logout.name);

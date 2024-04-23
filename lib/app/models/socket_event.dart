@@ -1,6 +1,6 @@
 enum SocketEvent{
   unknown,
-  loggin,
+  login,
   logout,
   newMessage,
 }

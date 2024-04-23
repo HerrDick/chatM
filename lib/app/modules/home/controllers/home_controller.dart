@@ -7,6 +7,7 @@ class HomeController extends GetxController {
 
   void singIn(){
     String username = textController.text;
+    
     UserService.to.setUsernameConnected(username);
   }
 }

@@ -22,7 +22,7 @@ ChatMessage _$ChatMessageFromJson(Map<String, dynamic> json) {
 mixin _$ChatMessage {
   String get client => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
   SocketEvent get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,8 +37,7 @@ abstract class $ChatMessageCopyWith<$Res> {
           ChatMessage value, $Res Function(ChatMessage) then) =
       _$ChatMessageCopyWithImpl<$Res, ChatMessage>;
   @useResult
-  $Res call(
-      {String client, String username, String? message, SocketEvent type});
+  $Res call({String client, String username, String message, SocketEvent type});
 }
 
 /// @nodoc
@@ -56,7 +55,7 @@ class _$ChatMessageCopyWithImpl<$Res, $Val extends ChatMessage>
   $Res call({
     Object? client = null,
     Object? username = null,
-    Object? message = freezed,
+    Object? message = null,
     Object? type = null,
   }) {
     return _then(_value.copyWith(
@@ -68,10 +67,10 @@ class _$ChatMessageCopyWithImpl<$Res, $Val extends ChatMessage>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      message: freezed == message
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -88,8 +87,7 @@ abstract class _$$ChatMessageImplCopyWith<$Res>
       __$$ChatMessageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String client, String username, String? message, SocketEvent type});
+  $Res call({String client, String username, String message, SocketEvent type});
 }
 
 /// @nodoc
@@ -105,7 +103,7 @@ class __$$ChatMessageImplCopyWithImpl<$Res>
   $Res call({
     Object? client = null,
     Object? username = null,
-    Object? message = freezed,
+    Object? message = null,
     Object? type = null,
   }) {
     return _then(_$ChatMessageImpl(
@@ -117,10 +115,10 @@ class __$$ChatMessageImplCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      message: freezed == message
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -133,20 +131,22 @@ class __$$ChatMessageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatMessageImpl implements _ChatMessage {
   _$ChatMessageImpl(
-      {required this.client,
+      {this.client = "",
       required this.username,
-      this.message,
+      this.message = "",
       this.type = SocketEvent.unknown});
 
   factory _$ChatMessageImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatMessageImplFromJson(json);
 
   @override
+  @JsonKey()
   final String client;
   @override
   final String username;
   @override
-  final String? message;
+  @JsonKey()
+  final String message;
   @override
   @JsonKey()
   final SocketEvent type;
@@ -188,9 +188,9 @@ class _$ChatMessageImpl implements _ChatMessage {
 
 abstract class _ChatMessage implements ChatMessage {
   factory _ChatMessage(
-      {required final String client,
+      {final String client,
       required final String username,
-      final String? message,
+      final String message,
       final SocketEvent type}) = _$ChatMessageImpl;
 
   factory _ChatMessage.fromJson(Map<String, dynamic> json) =
@@ -201,7 +201,7 @@ abstract class _ChatMessage implements ChatMessage {
   @override
   String get username;
   @override
-  String? get message;
+  String get message;
   @override
   SocketEvent get type;
   @override
