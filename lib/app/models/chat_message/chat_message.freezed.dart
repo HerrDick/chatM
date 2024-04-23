@@ -22,6 +22,8 @@ ChatMessage _$ChatMessageFromJson(Map<String, dynamic> json) {
 mixin _$ChatMessage {
   String get clientId => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
+  @TimestampOrNullConverter()
+  DateTime? get date => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   SocketEvent get type => throw _privateConstructorUsedError;
 
@@ -38,7 +40,11 @@ abstract class $ChatMessageCopyWith<$Res> {
       _$ChatMessageCopyWithImpl<$Res, ChatMessage>;
   @useResult
   $Res call(
-      {String clientId, String username, String message, SocketEvent type});
+      {String clientId,
+      String username,
+      @TimestampOrNullConverter() DateTime? date,
+      String message,
+      SocketEvent type});
 }
 
 /// @nodoc
@@ -56,6 +62,7 @@ class _$ChatMessageCopyWithImpl<$Res, $Val extends ChatMessage>
   $Res call({
     Object? clientId = null,
     Object? username = null,
+    Object? date = freezed,
     Object? message = null,
     Object? type = null,
   }) {
@@ -68,6 +75,10 @@ class _$ChatMessageCopyWithImpl<$Res, $Val extends ChatMessage>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -89,7 +100,11 @@ abstract class _$$ChatMessageImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String clientId, String username, String message, SocketEvent type});
+      {String clientId,
+      String username,
+      @TimestampOrNullConverter() DateTime? date,
+      String message,
+      SocketEvent type});
 }
 
 /// @nodoc
@@ -105,6 +120,7 @@ class __$$ChatMessageImplCopyWithImpl<$Res>
   $Res call({
     Object? clientId = null,
     Object? username = null,
+    Object? date = freezed,
     Object? message = null,
     Object? type = null,
   }) {
@@ -117,6 +133,10 @@ class __$$ChatMessageImplCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -135,6 +155,7 @@ class _$ChatMessageImpl implements _ChatMessage {
   _$ChatMessageImpl(
       {this.clientId = "",
       required this.username,
+      @TimestampOrNullConverter() this.date,
       this.message = "",
       this.type = SocketEvent.unknown});
 
@@ -147,6 +168,9 @@ class _$ChatMessageImpl implements _ChatMessage {
   @override
   final String username;
   @override
+  @TimestampOrNullConverter()
+  final DateTime? date;
+  @override
   @JsonKey()
   final String message;
   @override
@@ -155,7 +179,7 @@ class _$ChatMessageImpl implements _ChatMessage {
 
   @override
   String toString() {
-    return 'ChatMessage(clientId: $clientId, username: $username, message: $message, type: $type)';
+    return 'ChatMessage(clientId: $clientId, username: $username, date: $date, message: $message, type: $type)';
   }
 
   @override
@@ -167,6 +191,7 @@ class _$ChatMessageImpl implements _ChatMessage {
                 other.clientId == clientId) &&
             (identical(other.username, username) ||
                 other.username == username) &&
+            (identical(other.date, date) || other.date == date) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.type, type) || other.type == type));
   }
@@ -174,7 +199,7 @@ class _$ChatMessageImpl implements _ChatMessage {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, clientId, username, message, type);
+      Object.hash(runtimeType, clientId, username, date, message, type);
 
   @JsonKey(ignore: true)
   @override
@@ -194,6 +219,7 @@ abstract class _ChatMessage implements ChatMessage {
   factory _ChatMessage(
       {final String clientId,
       required final String username,
+      @TimestampOrNullConverter() final DateTime? date,
       final String message,
       final SocketEvent type}) = _$ChatMessageImpl;
 
@@ -204,6 +230,9 @@ abstract class _ChatMessage implements ChatMessage {
   String get clientId;
   @override
   String get username;
+  @override
+  @TimestampOrNullConverter()
+  DateTime? get date;
   @override
   String get message;
   @override

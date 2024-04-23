@@ -10,6 +10,7 @@ _$ChatMessageImpl _$$ChatMessageImplFromJson(Map<String, dynamic> json) =>
     _$ChatMessageImpl(
       clientId: json['clientId'] as String? ?? "",
       username: json['username'] as String,
+      date: const TimestampOrNullConverter().fromJson(json['date'] as int?),
       message: json['message'] as String? ?? "",
       type: $enumDecodeNullable(_$SocketEventEnumMap, json['type']) ??
           SocketEvent.unknown,
@@ -19,6 +20,7 @@ Map<String, dynamic> _$$ChatMessageImplToJson(_$ChatMessageImpl instance) =>
     <String, dynamic>{
       'clientId': instance.clientId,
       'username': instance.username,
+      'date': const TimestampOrNullConverter().toJson(instance.date),
       'message': instance.message,
       'type': _$SocketEventEnumMap[instance.type]!,
     };

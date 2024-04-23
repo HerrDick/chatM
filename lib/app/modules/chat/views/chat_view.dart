@@ -31,7 +31,7 @@ class ChatView extends GetView<ChatController> {
                         case SocketEvent.logout:
                           return Text("${message.username} покинул чат");
                         case SocketEvent.newMessage:
-                          return BubbleWidget(message: message, itsMe: itsMe);
+                          return BubbleWidget(message: message, itsMe: itsMe, date: message.date,);
                           
                         default:
                           return SizedBox();
