@@ -9,7 +9,7 @@ class SocketService extends GetxService {
  static SocketService get to => Get.find();
   late Socket _socket;
   
-  String get client=> _socket.id ?? "";
+  
   Future<SocketService> init() async {
     _socket = io('https://masqed.ru',
     OptionBuilder()
@@ -39,21 +39,23 @@ class SocketService extends GetxService {
     return this;
   }
  
- String get clientId=>_socket.id ?? "";
+ String get clientId => _socket.id ?? "";
+
   void connect(){
     _socket.connect();
   }
-void disconnect(){
-  _sendLogoutMessage();
-  _socket.disconnect();
-}
-void _sendSingInMessage(){
-  _socket.emit(SocketEvent.login.name, UserService.to.username);
-}
-void _sendLogoutMessage(){
-  _socket.emit(SocketEvent.logout.name);
-}
-void sendMessage(String message){
-_socket.emit(SocketEvent.newMessage.name, message);
-}
+
+  void disconnect(){
+    _sendLogoutMessage();
+    _socket.disconnect();
+  }
+  void _sendSingInMessage(){
+    _socket.emit(SocketEvent.login.name, UserService.to.username);
+  }
+  void _sendLogoutMessage(){
+    _socket.emit(SocketEvent.logout.name);
+  }
+  void sendMessage(String message){
+  _socket.emit(SocketEvent.newMessage.name, message);
+  }
 }

@@ -12,7 +12,7 @@ class ChatController extends GetxController {
   @override
   void onInit() {
     messages.listen((p0) async {
-      await Future.delayed(Duration(milliseconds: 100), () {
+      await Future.delayed(const Duration(milliseconds: 100), () {
         scrollController.jumpTo(scrollController.position.maxScrollExtent);
       });
     });

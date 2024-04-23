@@ -1,6 +1,7 @@
 import 'package:chat/app/models/chat_message/chat_message.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class BubbleWidget extends StatelessWidget {
   final ChatMessage message;
@@ -9,6 +10,25 @@ class BubbleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Align(
+      alignment: itsMe? Alignment.topRight: Alignment.topLeft,
+      child: Container(padding: const EdgeInsets.all(8.0),
+      margin: EdgeInsets.only( top: 5, bottom: 10, left: itsMe? 60:15, right: itsMe? 10:60),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+      color: itsMe
+      ? Color.fromARGB(255, 0, 183, 168)
+      : Color.fromARGB(255, 86, 13, 255),),
+      child: Column(crossAxisAlignment: itsMe? CrossAxisAlignment.end : CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if(!itsMe) const SizedBox(height: 5,),
+        Text(message.username),
+        Text(message.message)
+       
+      ],
+      ),
+      
+      ),
+    );
   }
 }

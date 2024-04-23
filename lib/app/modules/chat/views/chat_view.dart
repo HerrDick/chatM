@@ -24,7 +24,7 @@ class ChatView extends GetView<ChatController> {
                     controller: controller.scrollController,
                     itemBuilder: (Context, index) {
                       var message = controller.messages[index];
-                      var itsMe = controller.itsMe(message.client);
+                      var itsMe = controller.itsMe(message.clientId);
                       switch (message.type) {
                         case SocketEvent.login:
                           return Text("${message.username} вошел в чат");
@@ -32,6 +32,7 @@ class ChatView extends GetView<ChatController> {
                           return Text("${message.username} покинул чат");
                         case SocketEvent.newMessage:
                           return BubbleWidget(message: message, itsMe: itsMe);
+                          
                         default:
                           return SizedBox();
                       }

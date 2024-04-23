@@ -8,7 +8,7 @@ part of 'chat_message.dart';
 
 _$ChatMessageImpl _$$ChatMessageImplFromJson(Map<String, dynamic> json) =>
     _$ChatMessageImpl(
-      client: json['client'] as String? ?? "",
+      clientId: json['clientId'] as String? ?? "",
       username: json['username'] as String,
       message: json['message'] as String? ?? "",
       type: $enumDecodeNullable(_$SocketEventEnumMap, json['type']) ??
@@ -17,7 +17,7 @@ _$ChatMessageImpl _$$ChatMessageImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ChatMessageImplToJson(_$ChatMessageImpl instance) =>
     <String, dynamic>{
-      'client': instance.client,
+      'clientId': instance.clientId,
       'username': instance.username,
       'message': instance.message,
       'type': _$SocketEventEnumMap[instance.type]!,
