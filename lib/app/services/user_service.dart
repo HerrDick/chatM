@@ -1,3 +1,4 @@
+import 'package:chat/app/models/chat_message/chat_message.dart';
 import 'package:chat/app/services/socket_service.dart';
 import 'package:get/get.dart';
 
@@ -5,12 +6,15 @@ class UserService extends GetxService {
  static UserService get to => Get.find();
 
  String username = "";
- List message =[].obs;
+ final messages =RxList<ChatMessage>.empty();
   Future<UserService> init() async {
     return this;
   }
 void setUsernameConnected(String user){
   username=user;
   SocketService.to.connect();
+}
+void addMessageToList(ChatMessage message){
+messages.add(message);
 }
 }

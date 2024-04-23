@@ -1,23 +1,14 @@
+import 'package:chat/app/models/chat_message/chat_message.dart';
+import 'package:chat/app/services/user_service.dart';
 import 'package:get/get.dart';
 
 class ChatController extends GetxController {
-  //TODO: Implement ChatController
+ RxList<ChatMessage> get messages => UserService.to.messages;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

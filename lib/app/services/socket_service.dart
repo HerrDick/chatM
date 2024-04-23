@@ -1,4 +1,7 @@
+import 'package:chat/app/models/chat_message/chat_message.dart';
+import 'package:chat/app/models/socket_event.dart';
 import 'package:chat/app/routes/app_pages.dart';
+import 'package:chat/app/services/user_service.dart';
 import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 
@@ -20,7 +23,11 @@ class SocketService extends GetxService {
       });
     _socket.onDisconnect((data) => printInfo(info: "Disconnected"));
     _socket.onConnectError((data) => printInfo(info: "Error"));
-    _socket.onAny((event, data) => printInfo(info: "event: $event $data"));
+    _socket.onAny((event, data) { 
+    data['type']=SocketEvent.newMessage.name;
+    var message = ChatMessage.fromJson(data);
+    UserService.to.addMessageToList(message);
+    });
     return this;
   }
 
