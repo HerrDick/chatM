@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-
+import 'package:chat/app/models/socket_event.dart';
 import '../controllers/chat_controller.dart';
 
 class ChatView extends GetView<ChatController> {
@@ -18,7 +20,16 @@ class ChatView extends GetView<ChatController> {
           Expanded(child: 
           Obx(()=>ListView.builder(itemBuilder: (Context, index){
             var message=controller.messages[index];
-            return Text("${message.username}  ${message.message}");
+            switch (message.type){
+              case SocketEvent.loggin:
+              return Text("${message.username} вошел в чат");
+              case SocketEvent.logout:
+              return Text("${message.username} покинул чат");
+              case SocketEvent.newMessage:
+              return Text("${message.username}  ${message.message}");
+              default:
+              return SizedBox();
+            }
           },
           itemCount: controller.messages.length,
           ))
