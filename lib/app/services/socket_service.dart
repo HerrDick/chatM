@@ -13,7 +13,17 @@ class SocketService extends GetxService {
     .build()
     
     );
+    _socket.onConnect((data) => printInfo(info: "Socket connected"));
+    _socket.onDisconnect((data) => printInfo(info: "Disconnected"));
+    _socket.onConnectError((data) => printInfo(info: "Error"));
+    _socket.onAny((event, data) => printInfo(info: "event: $event $data"));
     return this;
   }
 
+  void connect(){
+    _socket.connect();
+  }
+void disconnect(){
+  _socket.disconnect();
+}
 }
