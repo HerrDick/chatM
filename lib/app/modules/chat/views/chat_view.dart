@@ -13,12 +13,18 @@ class ChatView extends GetView<ChatController> {
         title: const Text('ChatView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'ChatView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: Column(
+        children: [
+          Expanded(child: 
+          Obx(()=>ListView.builder(itemBuilder: (Context, index){
+            var message=controller.messages[index];
+            return Text("${message.username}  ${message.message}");
+          },
+          itemCount: controller.messages.length,
+          ))
+          )
+        ],
+      )
     );
   }
 }

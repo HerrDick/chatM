@@ -15,6 +15,7 @@ void setUsernameConnected(String user){
   SocketService.to.connect();
 }
 void addMessageToList(ChatMessage message){
+  printInfo(info: "New message $message");
 messages.add(message);
 }
 }
