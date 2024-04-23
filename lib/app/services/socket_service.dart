@@ -24,7 +24,9 @@ class SocketService extends GetxService {
     _socket.onDisconnect((data) => printInfo(info: "Disconnected"));
     _socket.onConnectError((data) => printInfo(info: "Error"));
     _socket.onAny((event, data) { 
-    data['type']=SocketEvent.newMessage.name;
+      var isknow=SocketEvent.values.any((element) => element.name==event);
+      if(!isknow) return;
+    data['type']=event;
     var message = ChatMessage.fromJson(data);
     UserService.to.addMessageToList(message);
     });
